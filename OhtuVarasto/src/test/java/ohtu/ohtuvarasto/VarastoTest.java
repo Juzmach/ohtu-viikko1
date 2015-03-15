@@ -66,6 +66,32 @@ public class VarastoTest {
     }
 
     @Test
+    public void liianSuuriLisaysEiOnnistu() {
+        varasto.lisaaVarastoon(varasto.getTilavuus() + 1);
+        assertEquals(varasto.getTilavuus(),varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void negatiivinenLisaysEiOnnistu() {
+        varasto.lisaaVarastoon(-1);
+        assertEquals(varasto.getTilavuus(),varasto.getSaldo(),vertailuTarkkuus);
+    }
+
+    @Test
+    public void negatiivinenOttoEiOnnistu() {
+        varasto.lisaaVarastoon(1);
+        varasto.otaVarastosta(-1);
+        assertEquals(1,varasto.getSaldo(),vertailuTarkkuus);
+    }
+
+    @Test
+    public void liianSuuriOttoEiOnnistu(){
+        varasto.lisaaVarastoon(1);
+        varasto.otaVarastosta(2);
+        assertEquals(1,varasto.getSaldo(),vertailuTarkkuus);
+    }
+
+    @Test
     public void konstr() {
         varasto = new Varasto(-1);
         varasto = new Varasto(0);
